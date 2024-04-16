@@ -1,11 +1,13 @@
 import { ITodo } from 'src/domain/entities';
 
-import { ICreate, IGetTodo } from '../use-cases/todo';
+import { ICreateTodo, IDeleteTodo, IGetTodo, IUpdateTodo } from '../use-cases';
 
-export const TODO_REPO = Symbol('TodoRepo');
+export const TODO_REPO = Symbol('TODO-REPO');
 
 export interface ITodoRepo {
-    getAll: () => Promise<ITodo[]>;
+    createTodo: (params: ICreateTodo.Input) => Promise<ICreateTodo.Output>;
+    getTodos: () => Promise<ITodo[]>;
     getTodo: (params: IGetTodo.Input) => Promise<IGetTodo.Output>;
-    create: (params: ICreate.Input) => Promise<ICreate.Output>;
+    updateTodo: (params: IUpdateTodo.Input) => Promise<IUpdateTodo.Output>;
+    deleteTodo: (params: IDeleteTodo.Input) => Promise<IDeleteTodo.Output>;
 }

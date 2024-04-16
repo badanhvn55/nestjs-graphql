@@ -10,7 +10,7 @@ type Todo {
 }
 
 type Query {
-  getAll: [Todo!]!
+  getTodos: [Todo!]!
   getTodo(getTodo: GetTodoInput!): Todo!
 }
 
@@ -19,9 +19,16 @@ input GetTodoInput {
 }
 
 type Mutation {
-  create(createTodo: CreateTodoInput!): Todo!
+  createTodo(createTodo: CreateTodoInput!): Todo!
+  updateTodo(updateTodo: UpdateTodoInput!): Todo!
+  deleteTodo(deleteTodo: GetTodoInput!): Todo!
 }
 
 input CreateTodoInput {
+  text: String!
+}
+
+input UpdateTodoInput {
+  id: String!
   text: String!
 }
