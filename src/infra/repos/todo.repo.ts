@@ -1,6 +1,6 @@
 import { InjectRepository } from '@nestjs/typeorm';
 import { ITodoRepo } from 'src/domain/contracts/repos';
-import { ICreate } from 'src/domain/contracts/use-cases/todo';
+import { ICreate, IGetTodo } from 'src/domain/contracts/use-cases/todo';
 import { ITodo } from 'src/domain/entities';
 import { Repository } from 'typeorm';
 
@@ -12,6 +12,11 @@ export class TodoRepo implements ITodoRepo {
     async getAll(): Promise<ITodo[]> {
         return this.repo.find();
     }
+
+    async getTodo({ id }: IGetTodo.Input): Promise<IGetTodo.Output> {
+        return this.repo.findOne({ where: { id } });
+    }
+
     async create({ text }: ICreate.Input): Promise<ICreate.Output> {
         return this.repo.save({ text });
     }

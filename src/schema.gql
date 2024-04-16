@@ -11,6 +11,11 @@ type Todo {
 
 type Query {
   getAll: [Todo!]!
+  getTodo(getTodo: GetTodoInput!): Todo!
+}
+
+input GetTodoInput {
+  id: String!
 }
 
 type Mutation {
